@@ -2,7 +2,7 @@
   "name": "@sarasvati-platform/abstract-query",
   "version": "0.0.1",
   "description": "Abstraqt Query for the Sarasvati Platform",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
