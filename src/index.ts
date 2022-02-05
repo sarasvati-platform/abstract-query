@@ -1,4 +1,6 @@
-interface IExpression {}
+interface IExpression {
+  toString(): string;
+}
 
 /* -------------------------------------------------------------------------- */
 /*                             Logical expressions                            */
@@ -29,6 +31,10 @@ export class Expression implements IExpression {
     public readonly operator: string,
     public readonly value: string)
   { }
+
+  toString() {
+    return `${this.field} ${this.operator} ${this.value}`
+  }
 }
 
 export class Operator implements IExpression {
@@ -40,5 +46,16 @@ export class Operator implements IExpression {
   ) {
     this.operator = operator
     this.expressions = expressions
+  }
+
+  toString() {
+    if (this.operator === 'not') {
+      return `${this.operator} (${this.expressions[0].toString()})`
+    }
+
+    const str = this.expressions
+      .map(e => e.toString())
+      .join(` ${this.operator} `)
+    return `(${str})`
   }
 }
