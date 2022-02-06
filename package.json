@@ -2,10 +2,11 @@
   "name": "@sarasvati-platform/abstract-query",
   "version": "0.0.1",
   "description": "Abstraqt Query for the Sarasvati Platform",
-  "main": "index.ts",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "/dist"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sarasvati-platform/abstract-query.git"
