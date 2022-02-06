@@ -1,7 +1,7 @@
 {
   "name": "@sarasvati-platform/abstract-query",
   "version": "0.0.2",
-  "description": "Abstraqt Query for the Sarasvati Platform",
+  "description": "Abstract Query for the Sarasvati Platform",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
