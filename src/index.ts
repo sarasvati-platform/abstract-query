@@ -1,4 +1,4 @@
-interface IExpression {
+export interface IExpression {
   toString(): string;
 }
 
