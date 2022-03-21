@@ -1,3 +1,5 @@
+export type Expression = Predicate | Operator
+
 /* -------------------------------------------------------------------------- */
 /*                             Logical expressions                            */
 /* -------------------------------------------------------------------------- */
@@ -10,25 +12,25 @@ export const not = (expression: Expression) => new Operator('not', expression)
 /*                           Comparison expressions                           */
 /* -------------------------------------------------------------------------- */
 
-export const eq   = (field, value) => new Expression(field, '=', value)
-export const neq  = (field, value) => new Expression(field, '!=', value)
-export const gt   = (field, value) => new Expression(field, '>', value)
-export const lt   = (field, value) => new Expression(field, '<', value)
-export const gte  = (field, value) => new Expression(field, '>=', value)
-export const lte  = (field, value) => new Expression(field, '<=', value)
-export const incl = (field, value) => new Expression(field, 'in', value)
+export const eq   = (field, value, options?) => new Predicate(field, '=', value, options)
+export const neq  = (field, value, options?) => new Predicate(field, '!=', value, options)
+export const gt   = (field, value, options?) => new Predicate(field, '>', value, options)
+export const lt   = (field, value, options?) => new Predicate(field, '<', value, options)
+export const gte  = (field, value, options?) => new Predicate(field, '>=', value, options)
+export const lte  = (field, value, options?) => new Predicate(field, '<=', value, options)
+export const incl = (field, value, options?) => new Predicate(field, 'in', value, options)
 
 /* -------------------------------------------------------------------------- */
 /*                               Implementation                               */
 /* -------------------------------------------------------------------------- */
 
-export class Expression {
+export class Predicate {
   constructor(
     public readonly field: string,
     public readonly operator: string,
     public readonly value: string,
-    public readonly options: string[] = [])
-  { }
+    public readonly options: string[] = []
+  ) { }
 
   toString() {
     return `${this.field} ${this.operator} ${this.value}`
