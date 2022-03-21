@@ -1,35 +1,33 @@
-export interface IExpression {
-  toString(): string;
-}
-
 /* -------------------------------------------------------------------------- */
 /*                             Logical expressions                            */
 /* -------------------------------------------------------------------------- */
 
-export const and = (...expressions: IExpression[]) => new Operator('and', ...expressions)
-export const or  = (...expressions: IExpression[]) => new Operator('or',  ...expressions)
-export const not = (expression: IExpression) => new Operator('not', expression)
+export const and = (...expressions: Expression[]) => new Operator('and', ...expressions)
+export const or  = (...expressions: Expression[]) => new Operator('or',  ...expressions)
+export const not = (expression: Expression) => new Operator('not', expression)
 
 /* -------------------------------------------------------------------------- */
 /*                           Comparison expressions                           */
 /* -------------------------------------------------------------------------- */
 
-export const eq  = (field, value) => new Expression(field, '=', value)
-export const neq = (field, value) => new Expression(field, '!=', value)
-export const gt  = (field, value) => new Expression(field, '>', value)
-export const lt  = (field, value) => new Expression(field, '<', value)
-export const gte = (field, value) => new Expression(field, '>=', value)
-export const lte = (field, value) => new Expression(field, '<=', value)
+export const eq   = (field, value) => new Expression(field, '=', value)
+export const neq  = (field, value) => new Expression(field, '!=', value)
+export const gt   = (field, value) => new Expression(field, '>', value)
+export const lt   = (field, value) => new Expression(field, '<', value)
+export const gte  = (field, value) => new Expression(field, '>=', value)
+export const lte  = (field, value) => new Expression(field, '<=', value)
+export const incl = (field, value) => new Expression(field, 'in', value)
 
 /* -------------------------------------------------------------------------- */
 /*                               Implementation                               */
 /* -------------------------------------------------------------------------- */
 
-export class Expression implements IExpression {
+export class Expression {
   constructor(
     public readonly field: string,
     public readonly operator: string,
-    public readonly value: string)
+    public readonly value: string,
+    public readonly options: string[] = [])
   { }
 
   toString() {
@@ -37,12 +35,12 @@ export class Expression implements IExpression {
   }
 }
 
-export class Operator implements IExpression {
-  public expressions: IExpression[]
+export class Operator {
+  public expressions: Expression[]
   public operator: string
   constructor(
     operator: string,
-    ...expressions:IExpression[]
+    ...expressions: Expression[]
   ) {
     this.operator = operator
     this.expressions = expressions
