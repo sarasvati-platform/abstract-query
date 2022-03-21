@@ -2,6 +2,7 @@
   "name": "Abstract Query",
   "dockerFile": "Dockerfile",
   "workspaceFolder": "/sarasvati/abstract-query",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/sarasvati/abstract-query,type=bind,consistency=cached",
   "extensions": [
     "eamodio.gitlens",
     "github.vscode-pull-request-github",
